@@ -12,14 +12,15 @@ app.get('/', function(request, response) {
 
 io.on('connection', function(socket) {
 	console.log('a user connected');
-		socket.on('chat message', function(msg) {
-			console.log('message: ' + msg);
-		});
+	socket.on('chat message', function(msg) {
+		io.emit('chat message', msg);
+		console.log('message: ' + msg);
+	});
     socket.on('disconnect', function() {
 		console.log('user disconnected');
 	});
 });
 
-http.listen(8888, function() {
-	console.log('Go on port 8888');
+http.listen(1111, function() {
+	console.log('Go on port 1111');
 });
